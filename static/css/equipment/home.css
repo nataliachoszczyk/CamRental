@@ -1,0 +1,199 @@
+.user-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.user-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.header img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    transition: width 0.3s ease;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 10px;
+}
+
+.category a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 150px;
+    box-sizing: border-box;
+}
+
+.category a.active {
+    background-color: darkred;
+}
+
+.category a:hover {
+    background-color: #ff4d4d;
+    transform: scale(1.1);
+}
+
+.equipment-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.equipment-item {
+    width: 250px;
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.equipment-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.equipment-item h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.equipment-item p {
+    font-size: 16px;
+    color: #555;
+}
+
+.equipment-item .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: darkred;
+}
+
+.rent-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: darkred;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.rent-button:hover {
+    background-color: red;
+}
+
+.footer {
+    background-color: #7c0a0a;
+    color: white;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-item {
+    margin: 10px 20px;
+}
+
+.footer-item strong {
+    font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+    .header img {
+        width: 80%;
+    }
+
+    .categories {
+        flex-direction: row;
+        justify-content: center;
+        margin: 20px 10px;
+    }
+
+    .category a {
+        width: 45%;
+        margin: 5px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .equipment-item {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-item {
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .header img {
+        width: 70%;
+    }
+
+    .categories {
+        flex-direction: column;
+        margin: 10px 5%;
+    }
+
+    .category a {
+        width: 100%;
+        margin: 5px 5px;
+        font-size: 14px;
+    }
+
+    .equipment-item {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .footer {
+        font-size: 14px;
+    }
+}

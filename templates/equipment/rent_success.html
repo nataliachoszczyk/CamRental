@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Successful</title>
+    <link rel="stylesheet" href="{% static 'css/equipment/rent_success.css' %}">
+</head>
+<body>
+
+{% load static %}
+<!-- Header with logo as a link to the home page -->
+<div class="header">
+    <a href="{% url 'home' %}"> <!-- Link do strony głównej -->
+        <img src="{% static 'images/logo_black.png' %}" alt="Logo">
+    </a>
+</div>
+
+<!-- Main success message container -->
+<div class="container">
+    <h2>Thank you for renting {{ equipment.name }}!</h2>
+    <p>Your rental request has been successfully submitted.</p>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-item">
+            <strong>Phone:</strong> +48 123 456 789
+        </div>
+        <div class="footer-item">
+            <strong>Email:</strong> office@camrental.com
+        </div>
+        <div class="footer-item">
+            <strong>Address:</strong> Lens Street 78, ShutterCity
+        </div>
+        <div class="footer-item">
+            <strong>Opening Hours:</strong> Mon-Sat: 9:00-20:00
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

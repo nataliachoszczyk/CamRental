@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent {{ equipment.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/equipment/rent_form.css' %}">
+    <script src="{% static 'js/rent_form.js' %}" defer></script>
+</head>
+<body>
+
+<!-- Header with logo as a link to the home page -->
+<div class="header">
+    <a href="{% url 'home' %}">
+        <img src="{% static 'images/logo_black.png' %}" alt="Logo">
+    </a>
+</div>
+
+<!-- Main form container -->
+<div class="container">
+    <h2>Rent {{ equipment.name }}</h2>
+    <form method="post" id="rent-form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="equipment_name">Equipment Name</label>
+            <input type="text" id="equipment_name" name="equipment_name" value="{{ form.equipment_name.value }}" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="start_date">Start Date</label>
+            <input type="date" id="start_date" name="start_date" required>
+            <p id="date-error" style="color: red; display: none;">Start date cannot be in the past!</p>
+        </div>
+
+        <div class="form-group">
+            <label for="days">Number of Days</label>
+            {{ form.days }}
+        </div>
+
+        <div class="form-group">
+            <label for="payment_method">Payment Method</label>
+            {{ form.payment_method }}
+        </div>
+
+        <div class="form-group">
+            <label for="comments">Additional Comments (Optional)</label>
+            {{ form.comments }}
+        </div>
+
+        <div class="form-group terms-checkbox">
+            <input type="checkbox" id="accept_terms" name="accept_terms" required>
+            <label for="accept_terms">I accept the terms and conditions</label>
+        </div>
+
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-item">
+            <strong>Phone:</strong> +48 123 456 789
+        </div>
+        <div class="footer-item">
+            <strong>Email:</strong> office@camrental.com
+        </div>
+        <div class="footer-item">
+            <strong>Address:</strong> Lens Street 78, ShutterCity
+        </div>
+        <div class="footer-item">
+            <strong>Opening Hours:</strong> Mon-Sat: 9:00-20:00
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

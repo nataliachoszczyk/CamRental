@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CamRental</title>
+    <link rel="stylesheet" href="{% static 'css/equipment/home.css' %}">
+</head>
+<body>
+    <div class="user-icon">
+        <a href="{% if user.is_authenticated %}{% url 'user_profile' %}{% else %}{% url 'login' %}{% endif %}">
+            <img src="{% static 'images/user.png' %}" alt="User Icon" class="user-img">
+        </a>
+    </div>
+    
+    <div class="header">
+        <img src="{% static 'images/logo_long_black.png' %}" alt="Logo">
+    </div>
+
+    <div class="categories">
+        <div class="category">
+            <a href="?" class="{% if not request.GET.category_id %}active{% endif %}">ALL</a>
+        </div>
+        {% for category in categories %}
+            <div class="category">
+                <a href="?category_id={{ category.id }}" class="{% if request.GET.category_id == category.id|stringformat:"s" %}active{% endif %}">
+                    {{ category.name }}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="equipment-container">
+        {% for item in equipment %}
+            <div class="equipment-item">
+                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <p class="price">{{ item.price_per_day }} PLN / day</p>
+    
+                {% if user.is_authenticated %}
+                    <a href="{% url 'rent_form' item.id %}" class="rent-button">RENT</a>
+                {% else %}
+                    <p><a href="{% url 'login' %}" class="rent-button">Log in to rent this item</a></p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-item">
+                <strong>Phone:</strong> +48 123 456 789
+            </div>
+            <div class="footer-item">
+                <strong>Email:</strong> office@camrental.com
+            </div>
+            <div class="footer-item">
+                <strong>Address:</strong> Lens Street 78, ShutterCity
+            </div>
+            <div class="footer-item">
+                <strong>Opening Hours:</strong> Mon-Sat: 9:00-20:00
+            </div>
+        </div>
+    </div>
+</body>
+</html>

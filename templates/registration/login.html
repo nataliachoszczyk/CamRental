@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/registration/login.css' %}">
+</head>
+<body>
+
+{% load static %}
+<!-- Header with logo -->
+<div class="header">
+    <a href="{% url 'home' %}">
+        <img src="{% static 'images/logo_black.png' %}" alt="Logo">
+    </a>
+</div>
+
+<!-- Main login form container -->
+<div class="container">
+    <h2>Login to your account</h2>
+
+    <!-- Displaying messages if any (e.g. errors) -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p class="message">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Login form -->
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p class="reset-password">
+        <a href="{% url 'password_reset' %}">Forgot your password?</a>
+    </p>
+
+    <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-item">
+            <strong>Phone:</strong> +48 123 456 789
+        </div>
+        <div class="footer-item">
+            <strong>Email:</strong> office@camrental.com
+        </div>
+        <div class="footer-item">
+            <strong>Address:</strong> Lens Street 78, ShutterCity
+        </div>
+        <div class="footer-item">
+            <strong>Opening Hours:</strong> Mon-Sat: 9:00-20:00
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

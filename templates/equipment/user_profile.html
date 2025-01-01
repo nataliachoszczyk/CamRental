@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/equipment/user_profile.css' %}">
+</head>
+<body>
+
+<!-- Header with logo -->
+<div class="header">
+    <a href="{% url 'home' %}">
+        <img src="{% static 'images/logo_black.png' %}" alt="Logo">
+    </a>
+</div>
+
+<!-- Profile Container -->
+<div class="profile-container">
+    <img src="{% static 'images/user.png' %}" alt="User Icon">
+    <h2>{{ user.username }}</h2>
+    <p>{{ user.first_name }} {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+
+    <!-- Rentals Section -->
+<div class="rentals-section">
+    <h3>Your Rentals</h3>
+    {% if rentals %}
+    <div class="rentals-table-container">
+        <table class="rentals-table">
+            <thead>
+                <tr>
+                    <th>Equipment</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Price per Day</th>
+                    <th>Total Price</th>
+                    <th>Payment Method</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rental in rentals %}
+                <tr>
+                    <td>{{ rental.equipment.name }}</td>
+                    <td>{{ rental.start_date }}</td>
+                    <td>{{ rental.end_date }}</td>
+                    <td>${{ rental.equipment.price_per_day }}</td>
+                    <td>${{ rental.total_price|floatformat:2 }}</td>
+                    <td>{{ rental.get_payment_method_display }}</td>
+                    <td>{{ rental.comments|default:"None" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>You have no rentals.</p>
+    {% endif %}
+</div>
+
+
+    <!-- Logout Button -->
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" name="logout" class="logout-button">Logout</button>
+    </form>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-item">
+            <strong>Phone:</strong> +48 123 456 789
+        </div>
+        <div class="footer-item">
+            <strong>Email:</strong> office@camrental.com
+        </div>
+        <div class="footer-item">
+            <strong>Address:</strong> Lens Street 78, ShutterCity
+        </div>
+        <div class="footer-item">
+            <strong>Opening Hours:</strong> Mon-Sat: 9:00-20:00
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
