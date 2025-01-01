@@ -31,14 +31,6 @@ class UserRegistrationTest(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertIn('Verify your email', mail.outbox[0].subject)
 
-    # def test_invalid_email_verification(self):
-    #     invalid_uid = 'invalid_uid'
-    #     invalid_token = 'invalid_token'
-    #
-    #     response = self.client.get(reverse('email_verify', kwargs={'uidb64': invalid_uid, 'token': invalid_token}))
-    #
-    #     self.assertContains(response, 'Invalid or expired verification link.')
-    #     self.assertEqual(response.status_code, 200)
 
     def test_valid_email_verification(self):
 
@@ -65,15 +57,15 @@ class UserRegistrationTest(TestCase):
         self.assertRedirects(response, reverse('login'))
 
 
-# class UserLoginTest(TestCase):
-#
-#     def test_login_valid_user(self):
-#         user = get_user_model().objects.create_user(username='testuser', password='mexshgjygdc')
-#
-#         response = self.client.post(reverse('login'), {'username': 'testuser', 'password': 'mexshgjygdc'})
-#
-#         self.assertEqual(response.status_code, 302)
-#         self.assertRedirects(response, reverse('home'))
+class UserLoginTest(TestCase):
+
+    def test_login_valid_user(self):
+        user = get_user_model().objects.create_user(username='testuser', password='mexshgjygdc')
+
+        response = self.client.post(reverse('login'), {'username': 'testuser', 'password': 'mexshgjygdc'})
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('home'))
 
 
 class UserProfileTest(TestCase):
